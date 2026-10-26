@@ -1,0 +1,1 @@
+import {json,runnerFetch} from "./_lib.js";export default async function handler(req,res){if(req.method!=="GET")return json(res,405,{error:"Method not allowed"});try{let r=await runnerFetch("/health");res.statusCode=r.status;res.setHeader("Content-Type","application/json");res.end(await r.text())}catch(e){json(res,502,{ok:false,error:e.message})}}
